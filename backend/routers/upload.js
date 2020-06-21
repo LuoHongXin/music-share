@@ -56,3 +56,4 @@ router.post('/video',multer({
         }
     }
 })
+module.exports = router;
