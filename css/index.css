@@ -1,0 +1,21 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+@keyframes cdmove{
+    0% {transform: rotateZ(0deg);}
+    50% {transform: rotateZ(180deg);}
+    100% {transform: rotateZ(360deg);}
+}
+.music-box{
+    display: flex;
+    padding: 6vh 10vw;
+    flex-direction: column;
+    align-items: center;
+}
+.music-box .cd-pic{
+    width: 70vw;
+    height: 70vw;
+    border-radius: 50%;
+    animation: cdmove 10s linear infinite;
+}
