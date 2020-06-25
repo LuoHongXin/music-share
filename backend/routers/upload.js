@@ -18,28 +18,33 @@ router.post('/audio',multer({
         if(file.mimetype.indexOf('audio')!=-1){//音频
           let fileInfo = {};
           console.log(file);
-          let key = Date.parse(new Date())
-          let result = await mongo.create(adcolName,[{
-              username:username,
-              filename:file.originalname,
-              key:key,
-              size:file.size,
-              type:file.mimetype
-          }])
-          fs.renameSync('./audio/'+file.filename,'./audio/'+file.originalname);
-          fileInfo.mimetype = file.mimetype;
-          fileInfo.originalname = file.originalname;
-          fileInfo.size = file.size;
-          fileInfo.path = file.path;
-          res.set({
-              'content-type':'application/json;charset=utf-8'
-          });
-          res.send(formatData({data:{
-            // url:'http://localhost:10010/audio/'+fileInfo.originalname,
-            fileInfo:fileInfo,
-            result:result,
-            filekey:Encrypt(file.originalname,key)//文件名+存储时间加密
-        }}));
+          let key = Date.parse(new Date());
+          let filekey = Encrypt(file.originalname,key);
+          try{
+              let result = await mongo.create(adcolName,[{
+                  username:username,
+                  filename:file.originalname,
+                  filekey:filekey,//加密后的字符
+                  size:file.size,
+                  type:file.mimetype
+              }])
+              fs.renameSync('./audio/'+file.filename,'./audio/'+file.originalname);
+              fileInfo.mimetype = file.mimetype;
+              fileInfo.originalname = file.originalname;
+              fileInfo.size = file.size;
+              fileInfo.path = file.path;
+              res.set({
+                  'content-type':'application/json;charset=utf-8'
+              });
+              res.send(formatData({data:{
+                // url:'http://localhost:10010/audio/'+fileInfo.originalname,
+                fileInfo:fileInfo,
+                result:result,
+                filekey:filekey//文件名+存储时间加密
+            }}));
+          }catch(err){
+            res.send(formatData({code:0,data:err}))
+          }
         }
     }
 })

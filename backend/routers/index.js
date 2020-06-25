@@ -12,11 +12,13 @@ router.use((req,res,next)=>{
 })
 //引入路由
 const upload = require('./upload');
+const play = require('./play');
 
 
 router.use(express.urlencoded({extended:true}),express.json());
 
 
 router.use('/upload',upload);
+router.use('/play',play);
 
 module.exports = router;
