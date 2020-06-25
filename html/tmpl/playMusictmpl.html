@@ -1,4 +1,17 @@
 <div class="music-box">
-    <img class="cd-pic" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=754132613,3261726878&fm=26&gp=0.jpg">
-    <video id="myvideo" autoplay src="{%= o.url %}"></audio>
+    <div class="play_info">
+        <div class="play_info_fix">
+            <div class="play_song nowrap1">
+                <span id="play_song" class="nowrap1">桑</span>
+            </div>
+            <div class="play_singer nowrap1">洛天依</div>
+        </div>
+    </div>
+    <div class="play">
+        <img class="cd-pic stop" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=754132613,3261726878&fm=26&gp=0.jpg">
+        <span class="iconfont icon-Pausezanting icon" id="play-pause"></span>
+    </div>
+    <video id="myvideo" class="hide" controls autoplay loop>
+        <source src="{%= o.url %}" />
+    </audio>
 </div>

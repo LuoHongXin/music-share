@@ -1,6 +1,7 @@
 var playMusic = function (opts){
     this.$el = opts.$ele||$("body");
     this.url = opts.url || '';
+    this.Media = '';
 }
 playMusic.prototype.init = function () {
    var html = comutil.syncGet(comutil.origin+'/html/tmpl/playMusictmpl.html');
@@ -8,11 +9,23 @@ playMusic.prototype.init = function () {
 }
 playMusic.prototype.event = function(){
     var Media = $("#myvideo")[0];
-    var eventTester = function(e){//播放器的事件监听
-        Media.addEventListener(e,function(){
-            console.log((new Date()).getTime(),e)
-        },false);
-    }
-    console.log(eventTester);
-    eventTester("play");
+    this.Media = Media;
+    Media.addEventListener('timeupdate',function(){
+        console.log(Media.duration,Media.currentTime)
+        $(".slider-bar .all-time").html(comutil.renderTime(Media.duration))
+        globalmodule.sliderBar.change(Media.duration,Media.currentTime);
+    },false);
+    //播放按钮
+    $("#play-pause").click(function(){
+        var $this = $(this);
+        $this.addClass('hide');
+        $(".cd-pic").removeClass('stop');
+        Media.play();
+    })
+    //点击图片暂停音乐
+    $(".cd-pic").click(function(){
+        $("#play-pause").removeClass('hide');
+        $(".cd-pic").addClass('stop');
+        Media.pause();
+    })
 }

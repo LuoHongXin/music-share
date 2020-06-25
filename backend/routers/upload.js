@@ -3,18 +3,29 @@ const router = express.Router();
 const mongo = require('../db');
 const multer = require('multer');
 const fs = require('fs');
-let {formatData} = require('../utils');
+const adcolName = 'audio';
+let {formatData,Encrypt} = require('../utils');
 //接收音乐文件
 router.post('/audio',multer({
     dest:'audio'
-}).single('file'),function(req,res,next){
+}).single('file'),async (req,res,next)=>{
     let file = req.file;
+    let {username} = req.body;
     if(file.length === 0||!file){
         res.render("error",{ message:"上传文件不能为空哦！" });
         return;
     }else{
         if(file.mimetype.indexOf('audio')!=-1){//音频
           let fileInfo = {};
+          console.log(file);
+          let key = Date.parse(new Date())
+          let result = await mongo.create(adcolName,[{
+              username:username,
+              filename:file.originalname,
+              key:key,
+              size:file.size,
+              type:file.mimetype
+          }])
           fs.renameSync('./audio/'+file.filename,'./audio/'+file.originalname);
           fileInfo.mimetype = file.mimetype;
           fileInfo.originalname = file.originalname;
@@ -23,11 +34,34 @@ router.post('/audio',multer({
           res.set({
               'content-type':'application/json;charset=utf-8'
           });
-          res.send({
-              url:'http://123.123.123:123/audio/'+fileInfo.originalname,
-              fileInfo:fileInfo
-          });
+          res.send(formatData({data:{
+            // url:'http://localhost:10010/audio/'+fileInfo.originalname,
+            fileInfo:fileInfo,
+            result:result,
+            filekey:Encrypt(file.originalname,key)//文件名+存储时间加密
+        }}));
         }
+    }
+})
+//下载音乐文件
+router.get('/download',function(req,res,next){
+    var filename = '';
+    if(req.query.filename){
+        filename=req.query.filename;
+        try{
+            res.download('./audio/'+filename,+filename+'.mp3',function(err){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log('ok')
+                }
+            })
+        }catch(err){
+            res.send(formatData({code:0,data:err}))
+        }
+    }else{
+        console.log('没传文件名')
+        res.send(formatData({code:0,data:'没传文件名'}))
     }
 })
 //接收视频文件

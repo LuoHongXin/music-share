@@ -1,0 +1,91 @@
+html{
+    font-size: 55.5556px;
+}
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+$white-icon: #fff !default;
+$white-songname: #000 !default;
+$white-username: #666 !default;
+@keyframes cdmove{
+    0% {transform: rotateZ(0deg);}
+    // 50% {transform: rotateZ(180deg);}
+    100% {transform: rotateZ(360deg);}
+}
+.nowrap1{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.hide{
+    display: none !important;
+}
+.music-box{
+    display: flex;
+    padding: 6vh 10vw;
+    flex-direction: column;
+    align-items: center;
+}
+.music-box .cd-pic{
+    width: 70vw;
+    height: 70vw;
+    border-radius: 50%;
+    animation: cdmove 10s linear infinite;
+}
+.music-box .cd-pic.stop{
+    animation: cdmove 10s linear infinite;
+    animation-play-state: paused;
+}
+.music-box .play_info{
+    width: 100%;
+    height: 1.5rem;
+}
+.music-box .play_info .play_info_fix{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.music-box .play_info .play_song{
+    max-width: 70%;
+    overflow: hidden;
+    position: relative;
+    height: 0.72rem;
+    line-height: 0.72rem;
+}
+.music-box .play_info .play_song>span{
+    font-size: 0.4rem;
+    font-weight: bold;
+    color: $white-songname;
+    display: block;
+    max-width: 100%;
+}
+.music-box .play_info .play_singer{
+    font-size: 0.24rem;
+    color: $white-username;
+    padding-top: 0.05rem;
+    padding-bottom: 0.05rem;
+    max-width: 60%;
+}
+.music-box .play{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.music-box .play .icon{
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 1rem;
+    z-index: 11;
+    color: $white-icon;
+}

@@ -1,5 +1,6 @@
 var comutil = {
-    origin:location.origin,
+    origin:location.origin,//当前页面路径的origin
+    audioAction:'http://localhost:10010/upload/audio',//音乐文件上传地址
     syncGet:function(url) {// 请求模板方法
         var data=null;
         $.ajax({
@@ -14,4 +15,25 @@ var comutil = {
         });
         return data;
     },
+    renderTime:function (sec){//秒数转换为分钟
+        var minute = Math.floor(sec/60);
+        minute = minute<10?'0'+minute:minute;
+        var second = Math.ceil(sec%60);
+        if(second==60){
+            second = '00';
+            minute++; 
+        }else{
+            second = second<10?'0'+second:second
+        }
+        return minute+':'+second;
+    },
+    encrypt:function (content,key){//aes加密
+            if(!content){return content;}
+            key = CryptoJS.enc.Utf8.parse(key);
+            var sContent = CryptoJS.enc.Utf8.parse(content);
+            var encrypted = CryptoJS.AES.encrypt(sContent,key,{mode:CryptoJS.mode.ECB,padding:CryptoJS.pad.Pkcs7});
+            var res = encrypted.toString();
+            return res;
+        }
 };
+    
