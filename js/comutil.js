@@ -1,6 +1,8 @@
 var comutil = {
     origin:location.origin,//当前页面路径的origin
     audioAction:'http://localhost:10010/upload/audio',//音乐文件上传地址
+    playurl:'http://localhost:10010/audio/',
+    service:'http://localhost:10010',//服务器地址
     syncGet:function(url) {// 请求模板方法
         var data=null;
         $.ajax({
@@ -34,6 +36,13 @@ var comutil = {
             var encrypted = CryptoJS.AES.encrypt(sContent,key,{mode:CryptoJS.mode.ECB,padding:CryptoJS.pad.Pkcs7});
             var res = encrypted.toString();
             return res;
-        }
+    },
+    getUrlParams:function(name){
+		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (!results) {
+			return '';
+		}
+		return decodeURIComponent(results[1]) || '';
+	}
 };
     

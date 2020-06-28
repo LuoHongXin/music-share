@@ -1,6 +1,10 @@
 .upload-music{
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.3rem;
 }
 .upload-music>form{
     display: flex;
@@ -24,4 +28,12 @@
 .upload-music .msg{
     font-size: 0.3rem;
     margin-bottom: 0.2rem;
+}
+#shareurl{
+    width: 3rem;
+    height: 1.5rem;
+    margin-top: 0.2rem;
+    font-size: 0.1rem;
+    border: none;
+    outline: none;
 }

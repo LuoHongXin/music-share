@@ -1,13 +1,18 @@
 
 var globalmodule = {};
 $(function(){
-    // initPlayMusic();
-    // initSliderBar();
+    initPlayMusic();
+    initSliderBar();
     initUploadMusic();
 })
 //音乐播放
 function initPlayMusic () {
-    globalmodule.playMusic = new playMusic({url:'http://localhost:10010/audio/Eris.S - 中二病.mp3'});
+    var filename = comutil.getUrlParams("filekey")||'';
+    if(!filename){
+        alert("没有音乐文件");
+        return;
+    }
+    globalmodule.playMusic = new playMusic({url:comutil.playurl+comutil.getUrlParams("filekey"),filename:filename});
     globalmodule.playMusic.init();
     globalmodule.playMusic.event();
 }
@@ -20,6 +25,6 @@ function initSliderBar (){
 //文件上传页面
 function initUploadMusic () {
     globalmodule.uploadMusic = new uploadMusic({});
-    globalmodule.uploadMusic.init();
-    globalmodule.uploadMusic.event();
+    // globalmodule.uploadMusic.init();
+    // globalmodule.uploadMusic.event();
 }

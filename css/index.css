@@ -67,7 +67,7 @@ body {
 }
 
 .music-box .play_info .play_song {
-  max-width: 70%;
+  max-width: 100%;
   overflow: hidden;
   position: relative;
   height: 0.72rem;
@@ -87,7 +87,7 @@ body {
   color: #666;
   padding-top: 0.05rem;
   padding-bottom: 0.05rem;
-  max-width: 60%;
+  max-width: 100%;
 }
 
 .music-box .play {
@@ -106,4 +106,21 @@ body {
   font-size: 1rem;
   z-index: 11;
   color: #fff;
+}
+
+.music-box .footer {
+  position: absolute;
+  bottom: 2rem;
+}
+
+.music-box .btn {
+  padding: 5px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  border-color: #D8D8D8;
+  line-height: normal;
+  color: #595959;
+  background: #fff;
+  border: 1px solid #D8D8D8;
+  white-space: nowrap;
 }

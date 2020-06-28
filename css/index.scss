@@ -56,7 +56,7 @@ $white-username: #666 !default;
     text-align: center;
 }
 .music-box .play_info .play_song{
-    max-width: 70%;
+    max-width: 100%;
     overflow: hidden;
     position: relative;
     height: 0.72rem;
@@ -74,7 +74,7 @@ $white-username: #666 !default;
     color: $white-username;
     padding-top: 0.05rem;
     padding-bottom: 0.05rem;
-    max-width: 60%;
+    max-width: 100%;
 }
 .music-box .play{
     display: flex;
@@ -92,3 +92,18 @@ $white-username: #666 !default;
     z-index: 11;
     color: $white-icon;
 }
+.music-box .footer{
+    position: absolute;
+    bottom: 2rem;
+}
+.music-box .btn{
+    padding: 5px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    border-color: #D8D8D8;
+    line-height: normal;
+    color: #595959;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+    white-space: nowrap;
+}   

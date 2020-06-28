@@ -2,9 +2,9 @@
     <div class="play_info">
         <div class="play_info_fix">
             <div class="play_song nowrap1">
-                <span id="play_song" class="nowrap1">桑</span>
+                <span id="play_song" class="nowrap1" title="{%= o.filename %}">{%= o.filename %}</span>
             </div>
-            <div class="play_singer nowrap1">洛天依</div>
+            <div class="play_singer nowrap1" title="{%= o.username %}">{%= o.username %}</div>
         </div>
     </div>
     <div class="play">
@@ -13,5 +13,9 @@
     </div>
     <video id="myvideo" class="hide" controls autoplay loop>
         <source src="{%= o.url %}" />
-    </audio>
+    </video>
+    <div class="footer">
+        <button class="sharebtn btn">分享自己的音乐</button>
+        <button class="download btn">下载音乐</button>
+    </div>
 </div>

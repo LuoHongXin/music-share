@@ -29,6 +29,9 @@ uploadMusic.prototype.event = function () {
     })
     $(".upload-music form").ajaxForm({
         success:function(data){
+            if(data.code==1){
+                $("#shareurl").removeClass("hide").val(data.data.filekey);
+            }
             console.log(data);
         }
     })

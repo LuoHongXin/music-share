@@ -3,13 +3,13 @@ const router = express.Router();
 const mongo = require('../db');
 const adcolName = 'audio';
 let {formatData} = require('../utils');
-//解密filekey，并返回音频路径
+//根据歌名查找数据返回歌曲信息
 router.post('/read',async(req,res,next)=>{
     let {
-        filekey
+        filename
     } = req.body;
     try{
-        let result = await mongo.find(adcolName,{filekey:filekey});
+        let result = await mongo.find(adcolName,{filename:filename});
         res.send(formatData({
             data:result
         }))
