@@ -24,6 +24,10 @@ body {
   text-overflow: ellipsis;
 }
 
+.red {
+  color: #f5222d !important;
+}
+
 .hide {
   display: none !important;
 }
