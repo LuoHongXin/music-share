@@ -14,6 +14,7 @@ uploadMusic.prototype.event = function () {
              $(this).val('')  
             alert("只能选择音频文件");
         }
+        $(".upload-music .uploadfile").removeClass("active");
         $(".upload-music .msg").removeClass("hide red").html(file.name);
     })
     $(".upload-music .uploadfile").click(function(){
@@ -21,9 +22,11 @@ uploadMusic.prototype.event = function () {
     })
     $(".submit").click(function(){
         if(!$("#uploadMusic").val()){
-            $(".upload-music .msg").removeClass("hide").addClass("red").html("请先上传文件")
+            $(".upload-music .msg").removeClass("hide").addClass("red").html("请先点上面那个文件夹上传文件");
+            $(".upload-music .uploadfile").addClass("active");
             return false;
         }else{
+            $(".upload-music .uploadfile").removeClass("active");
             $(".upload-music .msg").removeClass("red").addClass("hide").html("")
         }
     })

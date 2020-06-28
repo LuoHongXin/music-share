@@ -61,7 +61,11 @@ playMusic.prototype.event = function(){
     })
     //下载音乐
     $(".download").click(function(){
-        var html = `<iframe class="hide" id="downloadmusic" src='${comutil.service}/upload/download?filename=${globalmodule.playMusic.fileInfo.filename}'></iframe>`;
-        globalmodule.playMusic.$el.append(html);
+        if(globalmodule.playMusic.Media.duration){
+            var html = `<iframe class="hide" id="downloadmusic" src='${comutil.service}/upload/download?filename=${globalmodule.playMusic.fileInfo.filename}'></iframe>`;
+            globalmodule.playMusic.$el.append(html);
+        }else{
+            alert("目前暂无你要下载的音乐文件，你想下载请等别人或你来上传");
+        }
     })
 }

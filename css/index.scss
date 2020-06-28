@@ -37,8 +37,10 @@ $white-username: #666 !default;
     height: 70vw;
     border-radius: 50%;
     animation: cdmove 10s linear infinite;
+    box-shadow: 0 0 0.7rem;
 }
 .music-box .cd-pic.stop{
+    box-shadow:none;
     animation: cdmove 10s linear infinite;
     animation-play-state: paused;
 }

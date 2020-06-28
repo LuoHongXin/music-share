@@ -43,3 +43,19 @@
   border: none;
   outline: none;
 }
+
+@keyframes coloChange {
+  0% {
+    color: #000;
+  }
+  50% {
+    color: #c76e34;
+  }
+  100% {
+    color: #000;
+  }
+}
+
+.upload-music .iconfont.active {
+  animation: coloChange 2s infinite linear;
+}
