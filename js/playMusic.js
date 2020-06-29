@@ -37,11 +37,11 @@ playMusic.prototype.event = function(){
     },false);
     //播放按钮
     $("#play-pause").click(function(){
-        console.log(Media.duration)
-        if(!Media.duration){
-            alert("目前暂无你要播放的音乐文件，你想播放请等别人或你来上传");
-            return;
-        }
+        // console.log(Media.duration)
+        // if(!Media.duration){
+        //     alert("目前暂无你要播放的音乐文件，你想播放请等别人或你来上传");
+        //     return;
+        // }
         var $this = $(this);
         $this.addClass('hide');
         $(".cd-pic").removeClass('stop');
