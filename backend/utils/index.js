@@ -29,9 +29,13 @@ function formatData({code = 1,msg ='success',data=[]}){
 function audiourl(name) {
     return 'localhost:1161?filekey='+encodeURI(name);
 }
+function videourl(name){
+    return 'localhost:1161?filename='+encodeURI(name);
+}
 module.exports = {
     formatData,
     Decrypt,
     Encrypt,
-    audiourl
+    audiourl,
+    videourl
 }

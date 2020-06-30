@@ -1,0 +1,38 @@
+.playVideo {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.playVideo .mask {
+  opacity: 0.5;
+  background-color: #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.uploadVideo {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  border-color: #FFF;
+  font-weight: 600;
+  line-height: normal;
+  color: #FFF;
+  background: none;
+  border: 1px solid #FFF;
+  white-space: nowrap;
+  box-shadow: 0 0 0.2rem;
+}
+
+.uploadVideo.active {
+  display: block;
+}

@@ -4,7 +4,8 @@ const mongo = require('../db');
 const multer = require('multer');
 const fs = require('fs');
 const adcolName = 'audio';
-let {formatData,audiourl} = require('../utils');
+const vdcolName = 'video';
+let {formatData,audiourl,videourl} = require('../utils');
 //接收音乐文件
 router.post('/audio',multer({
     dest:'audio'
@@ -79,26 +80,39 @@ router.get('/download',function(req,res,next){
 //接收视频文件
 router.post('/video',multer({
     dest:'video'
-}).single('file'),function(req,res,next){
+}).single('file'),async function(req,res,next){
     let file = req.file;
+    console.log(file);
     if(file.length === 0||!file){
         res.render("error",{message:"上传文件不能为空哦哦！"});
         return;
     }else{
         if(file.mimetype.indexOf('video')!=-1){//视频
             let fileInfo = {};
-            fs.renameSync('./video/'+file.filename,'./video/'+file.originalname);
-            fileInfo.mimetype = file.mimetype;
-            fileInfo.originalname = file.originalname;
-            fileInfo.size = file.size;
-            fileInfo.path = file.path;
-            ress.set({
-                'content-type':'application/json;charset=utf-8'
-            });
-            res.send({
-                url:'http://123.123.123:123/video/'+fileInfo.originalname,
-                fileInfo:fileInfo
-            })
+            let filekey =videourl(file.originalname);
+            // var nameArr = file.originalname.replace('.'+file.mimetype.split('/')[1],"");
+            try{
+                let result = await mongo.create(vdcolName,[{
+                      filename:file.originalname,
+                      size:file.size,
+                      type:file.mimetype
+                  }])
+                fs.renameSync('./video/'+file.filename,'./video/'+file.originalname);
+                fileInfo.mimetype = file.mimetype;
+                fileInfo.originalname = file.originalname;
+                fileInfo.size = file.size;
+                fileInfo.path = file.path;
+                res.set({
+                    'content-type':'application/json;charset=utf-8'
+                });
+                res.send(formatData({data:{
+                    result:result,
+                    fileInfo:fileInfo,
+                    filekey:filekey
+                }}))
+            }catch(err){
+                res.send(formatData({code:0,data:err}))
+            }
         }
     }
 })

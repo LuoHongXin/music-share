@@ -2,6 +2,7 @@ var comutil = {
     origin:location.origin,//当前页面路径的origin
     audioAction:'http://localhost:10010/upload/audio',//音乐文件上传地址
     playurl:'http://localhost:10010/audio/',
+    playvideourl:'http://localhost:10010/video/',
     service:'http://localhost:10010',//服务器地址
     syncGet:function(url) {// 请求模板方法
         var data=null;
