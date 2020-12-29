@@ -13,10 +13,6 @@ $(function(){
 //音乐播放
 function initPlayMusic () {
     var filename = comutil.getUrlParams("filekey")||'';
-    if(!filename){
-        alert("没有音乐文件");
-        return;
-    }
     globalmodule.playMusic = new playMusic({url:comutil.playurl+comutil.getUrlParams("filekey"),filename:filename});
     globalmodule.playMusic.init();
     globalmodule.playMusic.event();
@@ -36,10 +32,6 @@ function initUploadMusic () {
 //视频播放
 function initPlayVideo () {
     var filename = comutil.getUrlParams("filename")||'';
-    if(!filename){
-        alert("没有视频文件");
-        return;
-    }
     globalmodule.playVideo = new playVideo({url:comutil.playvideourl+filename});
     globalmodule.playVideo.init();
     globalmodule.playVideo.event();
