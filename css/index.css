@@ -47,6 +47,11 @@ body {
   box-shadow: 0 0 0.7rem;
 }
 
+.music-box.dark .cd-pic {
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 200px #03e9f4;
+  filter: hue-rotate(110deg);
+}
+
 .music-box .cd-pic.stop {
   box-shadow: none;
   animation: cdmove 10s linear infinite;
@@ -76,12 +81,20 @@ body {
   line-height: 0.72rem;
 }
 
+.music-box.dark .play_info .play_song > span {
+  color: #fff;
+}
+
 .music-box .play_info .play_song > span {
   font-size: 0.4rem;
   font-weight: bold;
   color: #000;
   display: block;
   max-width: 100%;
+}
+
+.music-box.dark .play_info .play_singer {
+  color: rgba(235, 230, 230, 0.808);
 }
 
 .music-box .play_info .play_singer {

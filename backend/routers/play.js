@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongo = require('../db');
 const fs = require('fs');
+const path = require('path');
 const adcolName = 'audio';
 let {formatData} = require('../utils');
 //根据歌名查找数据返回歌曲信息
@@ -37,8 +38,7 @@ router.get('/readVideo',async(req,res,next)=>{
 
 // 读取大型文件，分开读取方法
 function readBigFileEntry(filename, response) { // filename 为服务器上文件的路径
-	fs.access(filename, function(err) { 
-        console.log(err,111111111)
+	fs.access(filename, function(err) {
         // 若不存在
         if (!filename || err) { 
             response.writeHead(404); 
