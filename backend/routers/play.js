@@ -25,15 +25,15 @@ router.get('/readVideo',async(req,res,next)=>{
         fileUrl
     } = req.query;
     console.log(req.query);
-    // try{
+    try{
         if (fileUrl) {
             readBigFileEntry(fileUrl,res);
         } else {
             res.send(formatData({code:0,data:'视频无地址数据'}))
         }
-    // }catch(err){
-    //     res.send(formatData({code:0,data:err}))
-    // }
+    }catch(err){
+        res.send(formatData({code:0,data:err}))
+    }
 })
 
 // 读取大型文件，分开读取方法
